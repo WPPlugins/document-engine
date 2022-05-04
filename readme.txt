@@ -4,7 +4,7 @@ Tags: wordpress to pdf, pdf maker, generate pdf, create pdf, pdf viewer
 Requires at least: 5.4
 Tested up to: 5.9
 Requires PHP: 5.6
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -33,22 +33,22 @@ Install Document Engine for WordPress either via the WordPress plugin directory 
 == Shortcodes ==
 Available Shortcodes For PDF Download
 
-* Shortcode to show the Download PDF button *
+* Shortcode to show the Download PDF button
 <pre>[document_engine_pdf_button]</pre>
 
-* Shortcode to remove content from the PDF document *
+* Shortcode to remove content from the PDF document
 <pre>[document_engine_pdf_remove]Your Hidden Content for PDF goes Here [/document_engine_pdf_remove]</pre>
 
-* Shortcode to Page break on pdf *
+* Shortcode to Page break on pdf
 <pre>[document_engine_pdf_page_break]</pre>
 
-* Shortcode to show Columns on PDF *
+* Shortcode to show Columns on PDF
 <pre>[document_engine_pdf_columns]Your content for column on PDF document [/document_engine_pdf_columns]</pre>
 
-* Shortcode to Break column on PDF document *
+* Shortcode to Break column on PDF document
 <pre>[document_engine_pdf_column_break]</pre>
 
-* Note: You can use above shortcodes to make more customizable pdf template. Your website appearance will not change by above shortcodes. It just modify the PDF document. *
+* Note: You can use above shortcodes to make more customizable pdf template. Your website appearance will not change by above shortcodes. It just modify the PDF document.
 
 == PDF Viewer Block ==
 * You can use PDF viewer block to show any pdf document on your WordPress site
@@ -66,5 +66,11 @@ Available Shortcodes For PDF Download
 
 == Changelog ==
 
-= 1.0.1 - 2022-04-12 =
-- initial release
+= 1.0.2 - 2022-05-04 =
+- Fixed - WP_enque_media issue resolved
+
+== Frequently Asked Questions ==
+
+= Why PDF viewer block not working on localhost (local) pdf file?
+
+PDF viewer block might not work on localhost if you choose local file to preview because we are using google pdf viewer to show the pdf file. This will work fine on any live url site.
