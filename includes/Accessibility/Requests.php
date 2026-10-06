@@ -82,10 +82,20 @@ class Requests
         ));
     }
 
+    /**
+     * Whether any requests were received: the screen stays reachable after the feature is switched
+     * off (they hold names and email addresses). Asked while the post type is being registered, so
+     * wp_count_posts() (which needs a registered type) can't be used.
+     */
     private static function has_requests()
     {
-        $counts = wp_count_posts(self::POST_TYPE);
-        return isset($counts->private) && (int)$counts->private > 0;
+        static $has = null;
+        if ($has === null) {
+            global $wpdb;
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+            $has = (bool)$wpdb->get_var($wpdb->prepare("SELECT ID FROM {$wpdb->posts} WHERE post_type = %s AND post_status = 'private' LIMIT 1", self::POST_TYPE));
+        }
+        return $has;
     }
 
     public static function query_vars($vars)
@@ -332,6 +342,10 @@ class Requests
             return;
         }
         echo '<div class="notice notice-info"><p>' . esc_html__('Visitors ask for documents in formats they can use. Email the requester the alternative version (reply to the notification email), then mark the request done.', 'document-engine') . '</p></div>';
+        // T7: once requests arrive, catching inaccessible PDFs before someone has to ask.
+        if (self::has_requests()) {
+            echo \MatrixAddons\DocumentEngine\Admin\Nudges::card('t7-a11y-check', __('Document Engine Pro\'s PDF accessibility check flags untagged, scanned or untitled PDFs in your documents list, before someone has to ask for another format.', 'document-engine'), \MatrixAddons\DocumentEngine\Admin\ProPage::url()); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        }
     }
 
     public static function columns($columns)
