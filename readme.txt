@@ -2,9 +2,9 @@
 Contributors: MatrixAddons
 Tags: document library, pdf viewer, embed pdf, download manager, document management
 Requires at least: 6.6
-Tested up to: 7.1
+Tested up to: 7.2
 Requires PHP: 7.4
-Stable tag: 2.3.0
+Stable tag: 2.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -298,6 +298,16 @@ All attributes are listed in **Documents → Docs → Developers**.
 
 == Changelog ==
 
+= 2.3.2 - 2026-11-27 =
+* Fixed - Library filters ignored categories and tags whose names use other alphabets (Cyrillic, Greek, Chinese, Arabic and others) and showed every document instead.
+* Fixed - A library limited to some categories offered every tag on the site, many of which then showed nothing. Category, tag and file type filters now list only what that library contains.
+* Fixed - With Document Engine Pro hiding restricted documents, filter counts no longer include documents the visitor can't see.
+
+= 2.3.1 - 2026-11-26 =
+* Compatibility - Tested with WordPress 7.2 and its new default theme, Ipsum, on PHP 7.4, 8.3 and 8.5.
+* Fixed - Opening a settings tab that no longer exists (for example after switching off Document Engine Pro) now shows the first tab instead of logging a "headers already sent" warning.
+* Fixed - The Activity preview screen has a browser title again, which also removes a PHP 8.5 deprecation notice.
+
 = 2.3.0 - 2026-11-06 =
 * Changed - Document Engine Pro is now installed by uploading its zip (Plugins → Add New → Upload Plugin). The free plugin no longer downloads or installs Pro, and no longer contacts the licence server. Existing Pro installs keep their licence and updates.
 * Security - If Document Engine Pro is switched off, its restricted and view-only documents now stay closed to visitors (they opened to everyone). A notice lets administrators turn Pro back on, or choose to open them.
@@ -405,6 +415,12 @@ All attributes are listed in **Documents → Docs → Developers**.
 * Fixed - Setting page design
 
 == Upgrade Notice ==
+
+= 2.3.2 =
+Fixes category and tag filters for names in other alphabets, and filter counts. Recommended for everyone using filters.
+
+= 2.3.1 =
+Ready for WordPress 7.2, with two small admin fixes.
 
 = 2.3.0 =
 Keeps restricted documents closed if Pro is switched off, and fixes right-to-left PDFs and category archive pages. Recommended for everyone.
